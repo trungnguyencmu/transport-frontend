@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { JsonApi } from '@/utils/json_api';
 import { apiService } from '@/services/apiService';
 
@@ -30,10 +30,7 @@ export const useFetchDataWithPagination = <T, F>(
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // To detect initial render and prevent duplicate API calls
-  const isInitialMount = useRef(true);
-
-  const fetchItems = useCallback(async () => {
+  const fetchItems = async () => {
     console.log('Fetching items...');
     setLoading(true);
     setError(null);
@@ -44,13 +41,13 @@ export const useFetchDataWithPagination = <T, F>(
         ...(keyword ? { keyword } : {}), // Only include keyword if it's defined
         ...customParam,
       };
-
+  
       if (filter) {
         params = { ...params, filter };
       }
-
+  
       const response = await apiService.get(endpoint, params);
-
+  
       // Log response to debug
       console.log('API Response:', response);
       const { data, meta } = response;
@@ -59,31 +56,20 @@ export const useFetchDataWithPagination = <T, F>(
           ? JsonApi.parseJsonApi(modelClass, item)
           : JsonApi.parseJsonApiV2(modelClass, item),
       );
-
       setItems(parsedItems);
       setMeta(meta);
-
-      if (onSuccess) {
-        onSuccess(parsedItems, meta);
-      }
     } catch (err: any) {
       setError(err.message || 'Failed to fetch data');
-      if (onError) {
-        onError(err);
-      }
     } finally {
       setLoading(false);
     }
-  }, [endpoint, modelClass, page, perPage, keyword, filter, customParam, version, onSuccess, onError]);
+  };
+  
+  
 
-  // Call fetchItems only when dependencies change, skipping initial mount
   useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      return;
-    }
     fetchItems();
-  }, [fetchItems]);
+  }, [page, perPage, keyword, filter, reload]);
 
   const onChangeKeyword = (val: string) => {
     setKeyword(val);
