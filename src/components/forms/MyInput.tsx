@@ -24,7 +24,6 @@ const MyInput: React.FC<MyInputProps> = ({
   control,
   isOptional = false,
   suffix,
-  onChange,
   ...rest
 }) => {
   return (
@@ -52,7 +51,6 @@ const MyInput: React.FC<MyInputProps> = ({
               color: Colors.primaryText,
               border: '1px solid transparent',
             }}
-            onChange={onChange}
             {...rest}
           />
         )}
