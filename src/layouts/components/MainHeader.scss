@@ -1,0 +1,70 @@
+@use '@/styles/variables' as *;
+
+.lineHeigh {
+  line-height: 22px;
+}
+.notificationWrap {
+  border-left: 1px solid $disabled-color;
+  border-right: 1px solid $disabled-color;
+  padding: 0 1rem;
+}
+.email {
+  font-size: 10px;
+  color: #888888;
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+  background-color: $white;
+  height: 64px;
+  // box-shadow: 0px 1px 4px 0px lighten($black, 77%);
+}
+
+.logo {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+
+  span {
+    font-weight: bold;
+    margin-left: 12px;
+  }
+}
+
+.accountInfo {
+  display: flex;
+
+  .notificationWrap {
+    border-left: 1px solid $disabled-color;
+    border-right: 1px solid $disabled-color;
+    padding: 0 1rem;
+  }
+
+  .userWrap {
+    cursor: pointer;
+    display: flex;
+    padding: 16px;
+
+    // .avatar img {
+    //   border-radius: 50%;
+    //   margin: 0 10px;
+    // }
+
+    .userInfo {
+      .name {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        font-size: 12px;
+      }
+
+      .email {
+        font-size: 10px;
+        color: #888888;
+      }
+    }
+  }
+}

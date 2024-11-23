@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx", // Use React 17+ JSX transform
+    "allowJs": true, // Allow JavaScript files if needed
+    "target": "ESNext", // Set to ESNext for modern syntax
+    "module": "ESNext", // Use ESNext for module resolution
+    "moduleResolution": "Node", // Correctly resolve modules
+    "strict": true, // Enable strict typing
+    "esModuleInterop": true, // Allow ES module imports
+    "skipLibCheck": true, // Skip library checking
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"],
+      "constants/*": ["src/constants/*"],
+      "pages/*": ["src/pages/*"],
+      "forms/*": ["src/components/forms/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

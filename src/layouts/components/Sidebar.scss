@@ -1,0 +1,87 @@
+@use '@/styles/variables' as *;
+
+.sidebar-logo {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.wrap-menu {
+  padding: 0 1rem;
+  background-color: $primary;
+  .ant-menu-item, .ant-menu-submenu-title {
+    padding-left: 10px !important;
+  }
+  .icon-sidebar {
+    position: relative;
+    left: -3px;
+  }
+  .ant-menu-submenu {
+    .ant-menu-item {
+      padding-left: 40px !important;
+    }
+  }
+
+  .has-sub-menu {
+    color: $primary !important;
+    .ant-menu-submenu {
+      .ant-menu-item {
+        padding-left: 24px !important;
+      }
+    }
+
+    .ant-menu-sub:has(> .custom-sub-menu-item) {
+      background-color: white !important;
+    }
+    > ul {
+      background-color: white;
+    }
+    &.sub-menu-opened {
+      background-color: white;
+      color: $primary !important;
+      // padding-bottom: 10px;
+      > div {
+        color: $primary !important;
+        border-bottom: solid 1px #f1f1f1;
+        border-radius: 0;
+        margin-bottom: 0;
+      }
+      &.collapsed {
+        padding-bottom: 0;
+        border-bottom: none;
+        > div {
+          border-bottom: none;
+        }
+      }
+    }
+    > div {
+      color: white !important;
+    }
+    .custom-sub-menu-item {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      background-color: white !important;
+      color: $black;
+      &.selected {
+        color: $primary;
+      }
+    }
+  }
+  .custom-menu-item {
+    display: flex;
+    color: white;
+    span {
+      a {
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+    &.ant-menu-item-selected {
+      color: $primary !important;
+    }
+    &.selected {
+      color: $primary;
+      background-color: white;
+    }
+  }
+}
