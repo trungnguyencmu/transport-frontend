@@ -67,6 +67,25 @@ class ApiService {
     return headers;
   }
 
+  async update(endpoint: string, body?: Record<string, any>) {
+    const headers = this.getHeaders();
+    const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+      method: 'PUT', // HTTP PUT method for updates
+      headers,
+      body: JSON.stringify(body),
+    });
+    return this.handleResponse(response);
+  }
+
+  async delete(endpoint: string) {
+    const headers = this.getHeaders();
+    const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
+      method: 'DELETE', // HTTP DELETE method
+      headers,
+    });
+    return this.handleResponse(response);
+  }
+
   private async handleResponse(response: Response) {
     if (!response.ok) {
       const error = await response.json();

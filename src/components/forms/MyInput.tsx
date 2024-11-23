@@ -1,7 +1,8 @@
-import React, { ReactElement, ReactNode } from 'react';
 import { Input } from 'antd';
-import { Controller, FieldError, Control } from 'react-hook-form';
+import React, { ReactNode } from 'react';
+import { Control, Controller, FieldError } from 'react-hook-form';
 import Colors from '../../constants/Colors'; // Import Colors constant
+import FormItemHook from './FormItem/FormItemHook';
 
 interface MyInputProps {
   name: string; // Field name in the form
@@ -27,13 +28,7 @@ const MyInput: React.FC<MyInputProps> = ({
   ...rest
 }) => {
   return (
-    <div className="mb-6">
-      {/* Label Section */}
-      <div className="flex justify-between items-center mb-2">
-        {label && <label className="font-semibold text-primaryText">{label}</label>}
-        {isOptional && <span className="text-gray text-sm italic">Optional</span>}
-      </div>
-
+    <FormItemHook label={label} required={!isOptional} errors={error}>
       {/* Input Field */}
       <Controller
         name={name}
@@ -55,10 +50,7 @@ const MyInput: React.FC<MyInputProps> = ({
           />
         )}
       />
-
-      {/* Error Message */}
-      {error && <p className="text-danger mt-1 text-sm">{error.message}</p>}
-    </div>
+    </FormItemHook>
   );
 };
 

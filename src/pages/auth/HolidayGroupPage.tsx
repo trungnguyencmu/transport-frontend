@@ -7,10 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { Edit } from '@mui/icons-material';
 import { debounce } from 'lodash';
 import { useCountries } from '@/hooks/getData/useCountries';
+import ModalAddNewHolidayGroup from './components/forms/ModalAddNewHolidayGroup';
+import { apiService } from '@/services/apiService';
 
 const HolidayGroupPage: React.FC = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const { countries } = useCountries();
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
+  const [editItem, setEditItem] = useState<HolidayGroup | undefined>(undefined);
 
   // Fetch paginated holiday groups
   const {
@@ -23,6 +27,7 @@ const HolidayGroupPage: React.FC = () => {
     error,
     perPage,
     onChangeKeyword,
+    handleReload
   } = useFetchDataWithPagination<HolidayGroup, any>(
     'v2/admins/holiday_groups',
     HolidayGroup,
@@ -91,10 +96,10 @@ const HolidayGroupPage: React.FC = () => {
   ];
 
   // Edit handler
-  const handleEditItem = (item: HolidayGroup) => {
-    navigate(`/holiday-groups/edit/${item.id}`);
+  const handleEditItem = (itemHolidayGroup) => {
+    setEditItem(itemHolidayGroup);
+    setModalOpen(true);
   };
-
   // Row selection handling
   const onSelectChange = (newSelectedRowKeys: string[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
@@ -113,6 +118,32 @@ const HolidayGroupPage: React.FC = () => {
     onChange: onSelectChange,
   };
 
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setEditItem(undefined);
+  };
+
+  const submitForm = async (values: any) => {
+    // handleCreate(values);
+    values?.id ? handleUpdate(values) : handleCreate(values);
+  };
+
+  const handleUpdate = async (values: any) => {
+    const res = await apiService.update(`/v2/admins/holiday_groups/${values.id}`, values);
+    if (res?.data) {
+      handleCloseModal();
+      handleReload();
+    }
+  };
+
+  const handleCreate = async (values: any) => {
+    const res = await apiService.post('/v2/admins/holiday_groups', values);
+    if (res?.data) {
+      handleCloseModal();
+      handleReload();
+    }
+  };
+
   return (
     <div className="p-4">
       <h3 className="pb-4 font-bold">HOLIDAY GROUPS</h3>
@@ -123,7 +154,7 @@ const HolidayGroupPage: React.FC = () => {
         items={items}
         columns={columns}
         fetchItems={debouncedSearch}
-        handleNewItem={() => navigate('/holiday-groups/new')}
+        handleNewItem={() => setModalOpen(true)}
         meta={meta}
         onChangeTable={onChangeTable}
         pageSize={perPage}
@@ -133,7 +164,16 @@ const HolidayGroupPage: React.FC = () => {
           console.log('Delete items:', selectedRowKeys);
         }}
       />
+      {isModalOpen && (
+      <ModalAddNewHolidayGroup
+        isModalOpen={isModalOpen}
+        handleCloseModal={handleCloseModal}
+        item={editItem}
+        submitForm={submitForm}
+      />
+    )}
     </div>
+    
   );
 };
 
