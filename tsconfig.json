@@ -8,6 +8,7 @@
     "strict": true, // Enable strict typing
     "esModuleInterop": true, // Allow ES module imports
     "skipLibCheck": true, // Skip library checking
+    "noEmit": true, // Disable code generation
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
@@ -19,5 +20,6 @@
     }
   },
   "include": ["src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  
 }
