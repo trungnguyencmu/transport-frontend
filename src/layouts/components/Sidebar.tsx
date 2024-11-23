@@ -151,34 +151,34 @@ const Sidebar: React.FC = () => {
         </SubMenu>
 
         {/* Other Menu Items */}
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/vehicles" icon={<DirectionsBus />} onClick={() => handleMenuClick('/vehicles')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles") && 'selected'}`} key="/vehicles" icon={<DirectionsBus />} onClick={() => handleMenuClick('/vehicles')}>
           Vehicles
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/sites" icon={<Business />} onClick={() => handleMenuClick('/sites')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("sites") && 'selected'}`} key="/sites" icon={<Business />} onClick={() => handleMenuClick('/sites')}>
           Sites
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/notices" icon={<Message />} onClick={() => handleMenuClick('/notices')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("notices") && 'selected'}`} key="/notices" icon={<Message />} onClick={() => handleMenuClick('/notices')}>
           Notices
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/users" icon={<Group />} onClick={() => handleMenuClick('/users')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("users") && 'selected'}`} key="/users" icon={<Group />} onClick={() => handleMenuClick('/users')}>
           Users
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/clients" icon={<BusinessCenter />} onClick={() => handleMenuClick('/clients')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("clients") && 'selected'}`} key="/clients" icon={<BusinessCenter />} onClick={() => handleMenuClick('/clients')}>
           Clients
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/reports" icon={<Analytics />} onClick={() => handleMenuClick('/reports')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("reports") && 'selected'}`} key="/reports" icon={<Analytics />} onClick={() => handleMenuClick('/reports')}>
           Reports
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/feedback" icon={<Feedback />} onClick={() => handleMenuClick('/feedback')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("feedback") && 'selected'}`} key="/feedback" icon={<Feedback />} onClick={() => handleMenuClick('/feedback')}>
           Feedback
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/settings" icon={<Settings />} onClick={() => handleMenuClick('/settings')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("settings") && 'selected'}`} key="/settings" icon={<Settings />} onClick={() => handleMenuClick('/settings')}>
           Settings
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/links" icon={<LinkIcon />} onClick={() => handleMenuClick('/links')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("links") && 'selected'}`} key="/links" icon={<LinkIcon />} onClick={() => handleMenuClick('/links')}>
           Links
         </Menu.Item>
-        <Menu.Item className={` custom-menu-item ${siderKey.includes("vehichles" || '') && 'selected'}`} key="/holiday-groups" icon={<EventNote />} onClick={() => handleMenuClick('/holiday-groups')}>
+        <Menu.Item className={` custom-menu-item ${siderKey.includes("holidays") && 'selected'}`} key="/holiday-groups" icon={<EventNote />} onClick={() => handleMenuClick('/holiday-groups')}>
           Holidays
         </Menu.Item>
       </Menu>
